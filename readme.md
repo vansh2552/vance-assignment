@@ -43,9 +43,16 @@ The API will be accessible at http://127.0.0.1:5000
 This endpoint allows users to retrieve forex data based on the specified currency pairs and timeframe.
 
 Request Body
-![Sample Image](request-body.png)
+![Sample Image](screenshots/request-body.png)
 
 Response
 - Success (200): Returns an array of forex data for the specified currency pair and period.
 
-![Sample Image](happy-flow.png)
+![Sample Image](screenshots/happy-flow.png)
+
+- Error (400): Returns an error if any of the required paramter is missing in the body or time period given is wrong
+![Sample Image](screenshots/missing.png)
+![Sample Image](screenshots/time-period.png)
+
+- Error (404) : Returns a 404 not found error if the data for the given currency pair is not available
+![Sample Image](screenshots/currency.png)
