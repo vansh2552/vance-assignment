@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
-# In-memory SQLite database connection
 def get_db_connection():
     conn = sqlite3.connect('forex_data.db')
     conn.row_factory = sqlite3.Row  # Allows dictionary-like access to rows
@@ -32,10 +31,10 @@ def get_date_range(period):
 @app.route('/api/forex-data', methods=['POST'])
 def get_forex_data():
     try:
-        data = request.json
-        from_currency = data['from']
-        to_currency = data['to']
-        period = data['period']
+        data = request.get_json()  
+        from_currency = data.get('from')
+        to_currency = data.get('to')
+        period = data.get('period')
 
         # Validate input
         if not from_currency or not to_currency or not period:

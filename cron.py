@@ -34,7 +34,7 @@ while True:
         conn.commit()
 
         to_date = int(time.mktime(datetime.now().timetuple()))
-        from_date = int(time.mktime((datetime.now() - timedelta(days=365)).timetuple()))
+        from_date = int(time.mktime((datetime.now() - timedelta(days=365)).timetuple())) # 1 year data
 
         quote = f"{from_currency}{to_currency}=X"
         url = f"https://finance.yahoo.com/quote/{quote}/history/?period1={from_date}&period2={to_date}"
@@ -53,6 +53,6 @@ while True:
                       row.get('Close', None), row.get('Adj', None), row.get('Volume', None)))
             conn.commit()  # Commit the transaction
 
-    sleep(86400)
+    sleep(86400) # Sleep for 24 hours before fetching data again
 
 
